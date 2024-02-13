@@ -12,8 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('cadastro')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('cadastrar')" :active="request()->routeIs('cadastrar')">
                         {{ __('Novo Cadastro') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('consulta')" :active="request()->routeIs('consulta')">
+                        {{ __('Consulta') }}
                     </x-nav-link>
                 </div>
             </div>
