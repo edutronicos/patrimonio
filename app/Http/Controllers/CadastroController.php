@@ -53,7 +53,10 @@ class CadastroController extends Controller
      */
     public function show(Cadastro $cadastro)
     {
-        return view('consulta.consulta');
+        $user = Auth::user();
+        $cadastros = $user->cadastros;
+
+        return view('consulta.consulta', compact('cadastros'));
     }
 
     /**
