@@ -4,7 +4,12 @@
     
         <h1>Filtrar</h1>
 
-        <form action="" method="get" class="md:grid md:grid-cols-4">
+        <form action="" method="get" class="md:grid md:grid-cols-5">
+            <div>
+                <x-input-label for="codigo" :value="__('Código')" />
+                <x-text-input id="codigo" class="block mt-1 w-72" type="search" name="codigo" />
+            </div>
+
             <div>
                 <x-input-label for="descricao" :value="__('Descrição')" />
                 <x-text-input id="descricao" class="block mt-1 w-72" type="search" name="descricao" />
@@ -48,46 +53,84 @@
         <h1>Controle de Patrimonio</h1>   
     </div>
 
-    <div class="grid grid-cols-1 content-center gap-6 lg:gap-8 scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-        <table class="table-fixed border-collapse border border-slate-400">
-        <thead>
-            <tr class="table-fixed">
-                <th class="p-1 border border-slate-700">Código</th>
-                <th class="p-1 border border-slate-700">Descrição</th>
-                <th class="p-1 border border-slate-700">Marca</th>
-                <th class="p-1 border border-slate-700">Modelo</th>
-                <th class="p-1 border border-slate-700">Colaborador</th>
-                <th class="p-1 border border-slate-700">Valor</th>
-                <th class="p-1 border border-slate-700">Estado</th>
-                <th class="p-1 border border-slate-700">Setor</th>
-                <th class="p-1 border border-slate-700">Categoria</th>
-                <th class="p-1 collapse md:visible border border-slate-700">Observações</th>
-            </tr>
-        <thead>
-            <tbody>
-            @foreach ($cadastros as $cadastro)
-                <tr>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->codigo}}</td>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->descricao}}</td>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->marca}}</td>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->modelo}}</td>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->colaborador}}</td>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->valor}}</td>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->estado}}</td>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->setor}}</td>
-                    <td class="p-1 text-sm border border-slate-300">{{$cadastro->categoria}}</td>
-                    <td class="p-1 collapse md:visible text-sm border border-slate-300">{{$cadastro->observacoes}}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <div>
-            <div>
-            <x-input-label for="categoria" :value="__('Nome')" />
-            <x-text-input id="descricao" class="block mt-1 w-72 border-none" type="text" name="descricao" disabled placeholder="Nomenclatura"/>
+    @foreach ($cadastros as $cadastro)
+    <div class="md:flex md:mb-2 content-center scale-100 p-2 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+        
+        <div class="md:w-1/2">
+            <div class="flex">
+                <h4 class="text-xs">Data:</h4>
+                <p class="ml-1 text-xs font-bold">{{$cadastro->updated_at}}</p>
+            </div>
+            <div class="flex">
+                <h4 class="text-xs">Código:</h4>
+                <p class="ml-1 text-xs font-bold uppercase">{{$cadastro->codigo}}</p>
+            </div>
+            <div class="flex">
+                <h4 class="text-xs">Estado:</h4>
+                <p class="ml-1 text-xs font-bold uppercase">{{$cadastro->estado}}</p>
+            </div>
+            <div class="flex">
+                <h4 class="text-xs">Descrição:</h4>
+                <p class="ml-1 text-xs font-bold uppercase">{{$cadastro->descricao}}</p>
+            </div>
+            <div class="flex">
+                <h4 class="text-xs">Colaborador:</h4>
+                <p class="ml-1 text-xs font-bold uppercase">{{$cadastro->colaborador}}</p>
+            </div>
+            <div class="flex">
+                <h4 class="text-xs">Observações:</h4>
+                <p class="ml-1 text-xs font-bold">{{$cadastro->observacoes}}</p>
             </div>
         </div>
+           
+        <div class="md:flex-col md:w-1/2">
+            <div class="flex">
+                    <h4 class="text-xs">Marca:</h4>
+                    <p class="ml-1 text-xs font-bold uppercase">{{$cadastro->marca}}</p>
+                </div>
+                <div class="flex">
+                    <h4 class="text-xs">Modelo:</h4>
+                    <p class="ml-1 text-xs font-bold uppercase">{{$cadastro->modelo}}</p>
+                </div>
+                <div class="flex">
+                    <h4 class="text-xs">Categoria:</h4>
+                    <p class="ml-1 text-xs font-bold uppercase">{{$cadastro->categoria}}</p>
+                </div>
+                <div class="flex">
+                    <h4 class="text-xs">Setor:</h4>
+                    <p class="ml-1 text-xs font-bold uppercase">{{$cadastro->setor}}</p>
+                </div>
+                <div class="flex">
+                    <h4 class="text-xs">Valor:</h4>
+                    <p class="ml-1 text-xs font-bold uppercase">R$ {{$cadastro->valor}}</p>
+                </div>
+                <div class="flex justify-end">
+                    <x-dropdown align="card" width="48">
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-3 border border-transparent text-sm  font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                <div>Opções</div>
+
+                                <div class="ms-1">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile.edit')" class="text-xs flex">
+                                {{ __('Editar') }} <i class="fa-regular fa-pen-to-square ml-2 mt-1"></i>
+                            </x-dropdown-link>
+                            
+                            <x-dropdown-link :href="route('profile.edit')" class="text-xs flex">
+                                {{ __('Excluir') }} <i class="fa-regular fa-trash-can ml-2 mt-1"></i>
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+        </div>
     </div>
+        
+    @endforeach
 
 </div>
 </x-app-layout>

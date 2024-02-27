@@ -2,11 +2,14 @@
 
 @php
 switch ($align) {
+    case 'card':
+        $alignmentClasses = 'origin-top top-[-90px] right-[20px] mt-0';
+        break;
     case 'left':
         $alignmentClasses = 'ltr:origin-top-left rtl:origin-top-right start-0';
         break;
     case 'top':
-        $alignmentClasses = 'origin-top';
+        $alignmentClasses = 'origin-top top-[-50px]';
         break;
     case 'right':
     default:
@@ -16,7 +19,7 @@ switch ($align) {
 
 switch ($width) {
     case '48':
-        $width = 'w-48';
+        $width = 'w-38';
         break;
 }
 @endphp
