@@ -59,6 +59,23 @@ class CadastroController extends Controller
         return view('consulta.consulta', compact('cadastros'));
     }
 
+    public function filtro(Request $request) 
+    {
+        
+        $cadastros = Auth::user()->cadastros;
+
+        if($request->codigo){
+          //dd();
+           $cadastros =  $cadastros->where('codigo', $request->codigo);
+        }
+
+        if($request->categoria) {
+            $cadastros = $cadastros->where('categoria', $request->categoria);
+        }
+
+        return view('consulta.consulta', compact('cadastros'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

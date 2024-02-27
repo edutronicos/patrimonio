@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     //Rotas do Cadastro
     Route::get('/cadastrar', [CadastroController::class, 'index'])->name('cadastrar');
     Route::get('/consulta', [CadastroController::class, 'show'])->name('consulta');
+    Route::get('/filtro', [CadastroController::class, 'filtro'])->name('filtro');
     Route::post('/cadastrar_new', [CadastroController::class, 'store'])->name('cadastrar.new');
 });
 

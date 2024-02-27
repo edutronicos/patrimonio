@@ -4,7 +4,7 @@
     
         <h1>Filtrar</h1>
 
-        <form action="" method="get" class="md:grid md:grid-cols-5">
+        <form action="{{ route('filtro') }}" method="get" class="md:grid md:grid-cols-5">
             <div>
                 <x-input-label for="codigo" :value="__('Código')" />
                 <x-text-input id="codigo" class="block mt-1 w-72" type="search" name="codigo" />
