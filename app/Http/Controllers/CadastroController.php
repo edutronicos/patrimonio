@@ -55,22 +55,34 @@ class CadastroController extends Controller
     {
         $user = Auth::user();
         $cadastros = $user->cadastros;
+        $count = $cadastros->count();
 
-        return view('consulta.consulta', compact('cadastros'));
+        return view('consulta.consulta', compact('cadastros', 'count'));
     }
 
     public function filtro(Request $request) 
     {
         
         $cadastros = Auth::user()->cadastros;
+        $user_id = Auth::user()->id;
+        //dd($user_id);
 
         if($request->codigo){
-          //dd();
-           $cadastros =  $cadastros->where('codigo', $request->codigo);
+           $cadastros =  Cadastro::where('user_id', '=', $user_id)
+                                    ->where('codigo', 'LIKE', '%' . $request->codigo . '%')->get();
         }
+
+        if($request->descricao){
+            $cadastros =  Cadastro::where('user_id', '=', $user_id)
+                                     ->where('descricao', 'LIKE', '%' . $request->descricao . '%')->get();
+         }
 
         if($request->categoria) {
             $cadastros = $cadastros->where('categoria', $request->categoria);
+        }
+
+        if($request->setor) {
+            $cadastros = $cadastros->where('setor', $request->setor);
         }
 
         return view('consulta.consulta', compact('cadastros'));
